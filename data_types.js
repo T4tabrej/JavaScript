@@ -31,7 +31,6 @@ console.log(num2);
 
 //output will be 80 
 
-
 // This implicit behavior might cause issues. Therefore, ES6 introduced a new octal literal that starts with the 0o followed by a sequence of octal digits (from 0 to 7)
 let num3= 0o71;
 console.log(num3);

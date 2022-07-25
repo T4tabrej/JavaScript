@@ -107,6 +107,54 @@ let person3 = {};
 person3.age = 25;
 person3.ssn = '012-38-9119';
 
+
+//it will not read the value of age
+Object.defineProperty(person3,'age',{
+    enumerable:false
+})
+
 for (let property in person3) {
     console.log(property);
 }
+
+// Define multiple properties: Object.defineProperties()
+var product = {};
+
+Object.defineProperties(product, {
+    name: {
+        value: 'Smartphone'
+    },
+    price: {
+        value: 799
+    },
+    tax: {
+        value: 0.1
+    },
+    netPrice: {
+        get: function () {
+            return this.price * (1 + this.tax);
+        }
+    }
+});
+// console.log(product.netPrice);
+console.log('The net price of a ' + product.name + ' is ' + product.netPrice.toFixed(2) + ' USD');
+
+// JavaScript object property descriptor
+
+/* it will return the all property value which are enumrable ,configurable,writeable etc
+The  Object.getOwnPropertyDescriptor() method allows you to get the descriptor object of a property. The Object.getOwnPropertyDescriptor() method takes two arguments:
+
+An object
+A property of the object
+It returns a descriptor object that describes a property. The descriptor object has four properties: configurable, enumerable, writable, and value.
+
+*/
+let person4 = {
+    firstName: 'John',
+    lastName: 'Doe'
+};
+
+
+let descriptor = Object.getOwnPropertyDescriptor(person4, 'firstName');
+
+console.log(descriptor);
