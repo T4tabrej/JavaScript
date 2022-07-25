@@ -158,3 +158,19 @@ let person4 = {
 let descriptor = Object.getOwnPropertyDescriptor(person4, 'firstName');
 
 console.log(descriptor);
+
+
+// Using JavaScript Object.assign() to merge objects
+let box = {
+    height: 10,
+    width: 20
+};
+
+let style = {
+    color: 'Red',
+    borderStyle: 'solid'
+};
+
+let styleBox = Object.assign({}, box, style);
+
+console.log(styleBox);

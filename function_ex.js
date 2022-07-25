@@ -215,3 +215,100 @@ function Person(name) {
 
 console.log(Person);
 console.log(Person.prototype);
+
+// Introduction to the factory functions in JavaScript
+let person1 = {
+    firstName: 'John',
+    lastName: 'Doe',
+    getFullName() {
+      return this.firstName + ' ' + this.lastName;
+    },
+  };
+  
+  console.log(person1.getFullName());
+
+ /* The person1 object has two properties: firstName and lastName, and one method getFullName() that returns the full name.
+
+Suppose that you need to create another similar object called person2, you can duplicate the code as follows:
+
+let person3 = {
+    firstName: 'Jane',
+    lastName: 'Doe',
+    getFullName() {
+      return this.firstName + ' ' + this.lastName;
+    },
+  };
+  
+  console.log(jane.getFullName());
+
+  In this example, the person1 and person2 objects have the same properties and methods.
+
+The problem is that the more objects you want to create, the more duplicate code you have.
+
+To avoid copying the same code all over again, you can define a function that creates the person object:
+*/
+
+
+// When a function creates and returns a new object, it is called a factory function. The createPerson() is a factory function because it returns a new person object.
+function createPerson(firstName, lastName) {
+    return {
+      firstName: firstName,
+      lastName: lastName,
+      getFullName() {
+        return firstName + ' ' + lastName;
+        // console.log(firstName + ' ' + lastName);
+      },
+    };
+  }
+
+
+ student1= createPerson("Tabassum","Anwar")
+student1.getFullName();
+//  console.log( createPerson("Tabassum","Anwar"));
+//  createPerson("Tabassum","Anwar").getFullName()
+
+// The following show how to use the createPerson() factory function to create two objects person1 and person2:
+function CreateStudent(f_name,l_name){
+    return{
+        firstName:f_name,
+        lastName:l_name,
+        getFullName(){
+            return f_name+' '+l_name;
+        }
+    };
+}
+
+let student2=CreateStudent("Tabrej","Hussain")
+let student3=CreateStudent("Gulrej","Hussain")
+console.log(student2.getFullName()+' '+student3.getFullName());
+
+
+/*
+When you create an object, the JavaScript engine allocates memory to it. If you create many person objects, the JavaScript engine needs lots of memory spaces to store these objects.
+
+However, each person object has a copy of the same getFullName() method. It’s not efficient memory management.
+
+To avoid duplicating the same getFullName() function in every object, you can remove the getFullName() method from the person object:
+//
+*/
+function create(firstName, lastName) {
+    return {
+        firstName: firstName,
+        lastName: lastName
+    }
+}
+// And move this method to another object:
+var personActions = {
+    getFullName() {
+      return this.firstName + ' ' + this.lastName;
+    },
+  };
+  let person5 = createPerson('sonu', 'Doe');
+let person6 = createPerson('Monu', 'Doe');
+
+person5.getFullName = personActions.getFullName;
+person6.getFullName = personActions.getFullName;
+
+console.log(person5.getFullName());
+console.log(person6.getFullName());
+
