@@ -312,3 +312,74 @@ person6.getFullName = personActions.getFullName;
 console.log(person5.getFullName());
 console.log(person6.getFullName());
 
+// Function methods: apply, call, and bind
+/*A function object has three important methods: apply(), call() and bind().
+
+The apply() and call() methods
+
+The apply() and call() methods call a function with a given this value and arguments.
+
+The difference between the apply() and call() is that you need to pass the arguments to the apply() method as an array-like object, whereas you pass the arguments to the call() function individually. For example:
+*/
+
+ cat = { type: 'Cat', sound: 'Meow' };
+ dog = { type: 'Dog', sound: 'Woof' };
+
+ say = function (message) {
+  console.log(message);
+  console.log(this.type + ' says ' + this.sound);
+};
+
+say.apply(cat, ['What does a cat say?']);
+say.apply(dog, ['What does a dog say?']);
+
+/*Introduction to JavaScript arrow functions
+ES6 arrow functions provide you with an alternative way to write a shorter syntax compared to the function expression.
+
+The following example defines a function expression that returns the sum of two numbers:
+*/
+add = function (x, y) {
+	return x + y;
+};
+
+console.log(add(10, 20)); // 30
+
+
+// /arrow function
+let sum1=(x,y)=>x+y;
+console.log(sum1(40,30));
+
+
+/*However, if you use the block syntax, you need to specify the return keyword:
+
+let add = (x, y) => { return x + y; }
+*/
+
+let setColor = color => ({value: color });
+setColor.value="red"
+console.log(setColor);
+
+// What are callbacks
+
+// In JavaScript, functions are first-class citizens. Therefore, you can pass a function to another function as an argument.
+
+// By definition, a callback is a function that you pass into another function as an argument for executing later.
+
+function isOdd(number) {
+  return number % 2 != 0;
+}
+
+
+function filter(numbers, fn) {
+  let results = [];
+  for (const number of numbers) {
+    if (fn(number)) {
+      results.push(number);
+    }
+  }
+  return results;
+}
+let numbers = [1, 2, 4, 7, 3, 5, 6];
+console.log(filter(numbers, isOdd));
+
+

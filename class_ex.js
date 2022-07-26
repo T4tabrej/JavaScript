@@ -126,4 +126,3 @@ class MyClass {
     }
   }
   */
-//  class complete start from arrows function
