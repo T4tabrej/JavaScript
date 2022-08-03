@@ -369,6 +369,9 @@ function isOdd(number) {
   return number % 2 != 0;
 }
 
+function isEven(number){
+      return number%2==0;
+}
 
 function filter(numbers, fn) {
   let results = [];
@@ -379,7 +382,97 @@ function filter(numbers, fn) {
   }
   return results;
 }
+
+
+function filter_even(numbers,fn){
+let evenNo=[];
+  for(const i in numbers){
+    if (isEven(i)) {
+        evenNo.push(i);
+    }
+
+  }
+     
+return evenNo;
+
+}
 let numbers = [1, 2, 4, 7, 3, 5, 6];
 console.log(filter(numbers, isOdd));
+console.log(filter(numbers, isEven));
+
+// callback using anonyms function
 
 
+function filter_even(numbers,callabck){
+  result=[]
+ for ( key in numbers) {
+  if (callabck(key)) {
+    result.push(key);
+    
+  }
+  return result;
+ }
+
+}
+console.log(filter_even(numbers, (n) => n % 2 != 0 ));
+
+
+// Asynchronous callbacks
+// Asynchronicity means that if JavaScript has to wait for an operation to complete, it will execute the rest of the code while waiting.
+function download(url, callback) {
+  setTimeout(() => {
+      // script to download the picture here
+      console.log(`Downloading ${url} ...`);
+      
+      // process the picture once it is completed
+      callback(url);
+  }, 1000);
+}
+
+function process(picture) {
+  console.log(`Processing ${picture}`);
+}
+
+let url = 'https://wwww.javascripttutorial.net/pic.jpg';
+// download(url, process);
+//another method
+download(url, function (picture) {
+  console.log(`Processing ${picture}`);
+});
+// Nesting callbacks and the Pyramid of Doom
+function download(url, callback) {
+  setTimeout(() => {
+    console.log(`Downloading ${url} ...`);
+    callback(url);
+  }, 1000);
+}
+
+const url1 = 'https://www.javascripttutorial.net/pic1.jpg';
+const url2 = 'https://www.javascripttutorial.net/pic2.jpg';
+const url3 = 'https://www.javascripttutorial.net/pic3.jpg';
+
+download(url1, function (url) {
+  console.log(`Processing ${url}`);
+  download(url2, function (url) {
+    console.log(`Processing ${url}`);
+    download(url3, function (url) {
+      console.log(`Processing ${url}`);
+    });
+  });
+});
+/*
+
+asyncFunction(function(){
+    asyncFunction(function(){
+        asyncFunction(function(){
+            asyncFunction(function(){
+                asyncFunction(function(){
+                    ....
+                });
+            });
+        });
+    });
+});
+
+
+*/
