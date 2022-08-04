@@ -14,5 +14,4 @@ getUser((users)=>{
     callabck(user);
 })
 }
-
 findUser('john',console.log);
