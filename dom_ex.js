@@ -118,4 +118,68 @@ while (nextSibling) {
 }
 */
 
-// start from   Getting Child Elements of a Node in JavaScript
+/*getting child of elements
+
+
+
+let content=document.querySelector('.menu')
+// let firstChild=content.firstChild.nodeType;
+//it will return the first child of menu bt we have to name first as class
+let firstChild=content.firstElementChild;
+// console.log(firstChild);
+//it will return the last child of menu bt we have to name last as class
+let lastChild=content.lastElementChild
+// console.log(lastChild);
+
+
+// The following example selects all child elements of the element with the Id main:
+
+let children = content.children;
+let arr=Array.from(children);
+arr.forEach((item)=>{
+console.log(item.innerText);
+})
+// console.log(children);
+
+*/
+
+/*create element
+
+
+*/
+
+// 1.creating div 
+let div=document.createElement('div');
+div.innerHTML='<p>Hello Welcome this div creating first<p/>'
+//giving id to the div
+div.id='content'
+
+//giving classname to the div
+div.className='note'
+
+//creating new text node
+let text=document.createTextNode("this is creating text node example");
+div.appendChild(text);
+
+//adding element to div
+let h2 = document.createElement('h2');
+h2.textContent = 'Add h2 element to the div';
+div.appendChild(h2);
+// adding list element to menu1
+let menu1=document.getElementById('menu1')
+let li=document.createElement('li')
+li.textContent='products'
+menu1.appendChild(li)
+//adding multiple list items
+let arr=['menu','aboutus','contactus'];
+for(i=0;i<3;i++){
+let l=document.createElement('li')
+l.textContent=arr[i]
+menu1.appendChild(l)
+}
+document.body.appendChild(div)
+let x=document.getElementById('content')
+
+
+// let x=document.querySelector('.note')
+console.log(x);
