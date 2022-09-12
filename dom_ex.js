@@ -183,3 +183,69 @@ let x=document.getElementById('content')
 
 // let x=document.querySelector('.note')
 console.log(x);
+
+
+//insert before an element
+menu1=document.querySelector('#menu1');
+let l=document.createElement('li')
+li.textContent="Adding Before ele";
+menu1.insertBefore(l,menu1.firstElementChild)
+
+//setting a cookie
+// document.cookie="key:value"
+document.cookie = `${encodeURIComponent("username")}=${encodeURIComponent("tabrej")}`;
+console.log(document.cookie);
+
+//local storage
+window.localStorage.setItem('theme','dark');
+console.log(window.localStorage);
+// 2) The length property
+
+// To get the number of name-value pairs, you use the length property like this:
+
+console.log(window.localStorage.length); // 1
+// 3) The getItem() method
+console.log(localStorage.getItem('theme'));
+/*4) The removeItem() method
+
+To remove a name-value pair by a key, you use the removeItem()*/
+localStorage.removeItem('theme')
+console.log(localStorage);
+
+/*5) Loop over keys of the localStorage object
+
+The following stores three name-value pairs to the localStorage:
+*/
+localStorage.setItem('theme','light');
+localStorage.setItem('backgroundColor','white');
+localStorage.setItem('color','#111');
+// console.log(localStorage.getItem('color'));
+let keys=Object.keys(localStorage)
+// console.log(key);
+for (let key of keys) {
+   console.log(localStorage.getItem(key));
+}
+/*
+Storing objects
+
+The Storage type stores only string data. To store objects, you need to convert them into strings using the JSON.stringify() method. For example:
+*/
+const settings = {
+    backgroundColor: '#fff',
+    color: '#111',
+    theme: 'light'
+};
+
+localStorage.setItem('settings', JSON.stringify(settings));
+
+console.log(localStorage.getItem('settings'));
+
+// The following retrieves the value from the localStorage and converts it back to the object using the JSON.parse() method.
+
+let storedSettings = JSON.parse(localStorage.getItem('settings'));
+console.log(storedSettings);
+// Remove a name-value pair by calling the removeItem() method.
+// And remove all values by calling the clear() method.
+// localStorage.removeItem('settings')
+localStorage.clear()
+console.log("Checking the local Storage ",localStorage);
